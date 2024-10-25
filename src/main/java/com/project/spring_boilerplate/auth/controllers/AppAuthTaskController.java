@@ -63,4 +63,16 @@ public class AppAuthTaskController {
             authTaskService.createAuthTask(reqdto)
       );
    }
+
+   @DeleteMapping(value = "/delete_a_task/{task_id}")
+   public ResponseEntity<APIResponse<Void>> deleteATask(@PathVariable @Valid @ValidUUID String task_id){
+      logger.info("delete task {}", task_id);
+
+      authTaskService.deleteAuthTask(UUID.fromString(task_id));
+      return APIResponse.build(
+              HttpStatus.OK.value(),
+              "Task fetched successfully",
+              null
+      );
+   }
 }

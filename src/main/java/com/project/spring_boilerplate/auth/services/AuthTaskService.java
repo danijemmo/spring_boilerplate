@@ -52,4 +52,12 @@ public class AuthTaskService {
          throw new ConflictException("Task with target " + createAuthTaskDTO.target() + " already exists");
       }
    }
+
+   public void deleteAuthTask(UUID taskId){
+      final var task = authTaskRepository.findById(taskId)
+              .orElseThrow(() -> new NotFoundException("Auth task not found"));
+
+      authTaskRepository.delete(task);
+   }
+
 }

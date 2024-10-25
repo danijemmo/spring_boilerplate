@@ -4,6 +4,7 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
+import io.github.cdimascio.dotenv.Dotenv;
 
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
@@ -19,7 +20,8 @@ public class JwtUtils {
    private final SecretKey secretKey;
 
    public JwtUtils() {
-      final var secretString = "auDWN5qNGsiGaH4Q2S7S9yq8TqvFJlbpMeReXhPiDP9TjCCIccBWojls0Ygaxuhm";
+      Dotenv dotenv = Dotenv.load();
+      final var secretString = dotenv.get("JWT_SECRET");
       final var keyBytes = Base64.getDecoder().decode(secretString.getBytes(StandardCharsets.UTF_8));
       this.secretKey = new SecretKeySpec(keyBytes, "HmacSHA256");
    }

@@ -29,7 +29,6 @@ public class JwtAuthFilter extends OncePerRequestFilter {
          HttpServletResponse response,
          FilterChain filterChain) throws ServletException, IOException {
 
-      final String authClientSecret = request.getHeader("x-api-key");
       final var reqPath = request.getRequestURI();
 
       final String authHeader = request.getHeader("Authorization");

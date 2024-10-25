@@ -46,7 +46,7 @@ public class SecurityConfiguration {
             .authorizeHttpRequests(r ->
                   r
                         // Auth paths
-                        .requestMatchers("/api/auth/login").anonymous()
+                        .requestMatchers("/api/auth/login","/api/auth/register").anonymous()
                         .requestMatchers("/api/auth/*").authenticated()
 
                         // Documentation paths
